@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA51BBFB2224281400957F24 /* SpaceAdventure.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA51BBFA2224281400957F24 /* SpaceAdventure.swift */; };
+		AA51BBFD222439FA00957F24 /* PlanetarySystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA51BBFC222439FA00957F24 /* PlanetarySystem.swift */; };
+		AA51BBFF2224473F00957F24 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA51BBFE2224473F00957F24 /* Planet.swift */; };
 		F9A13B8E1ADDD6990057A316 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A13B8D1ADDD6990057A316 /* main.swift */; };
 		F9A13B951ADDD6F70057A316 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A13B941ADDD6F70057A316 /* HelperFunctions.swift */; };
 /* End PBXBuildFile section */
@@ -24,6 +27,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AA51BBFA2224281400957F24 /* SpaceAdventure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceAdventure.swift; sourceTree = "<group>"; };
+		AA51BBFC222439FA00957F24 /* PlanetarySystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetarySystem.swift; sourceTree = "<group>"; };
+		AA51BBFE2224473F00957F24 /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
 		F9A13B8A1ADDD6990057A316 /* SpaceAdventure */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SpaceAdventure; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A13B8D1ADDD6990057A316 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		F9A13B941ADDD6F70057A316 /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
@@ -60,6 +66,9 @@
 			isa = PBXGroup;
 			children = (
 				F9A13B8D1ADDD6990057A316 /* main.swift */,
+				AA51BBFA2224281400957F24 /* SpaceAdventure.swift */,
+				AA51BBFC222439FA00957F24 /* PlanetarySystem.swift */,
+				AA51BBFE2224473F00957F24 /* Planet.swift */,
 				F9A13B941ADDD6F70057A316 /* HelperFunctions.swift */,
 			);
 			path = SpaceAdventure;
@@ -125,7 +134,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9A13B8E1ADDD6990057A316 /* main.swift in Sources */,
+				AA51BBFD222439FA00957F24 /* PlanetarySystem.swift in Sources */,
 				F9A13B951ADDD6F70057A316 /* HelperFunctions.swift in Sources */,
+				AA51BBFB2224281400957F24 /* SpaceAdventure.swift in Sources */,
+				AA51BBFF2224473F00957F24 /* Planet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
