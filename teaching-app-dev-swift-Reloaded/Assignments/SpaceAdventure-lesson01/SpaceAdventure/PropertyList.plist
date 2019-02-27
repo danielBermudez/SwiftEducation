@@ -1,27 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>New item</key>
-	<array>
+<array>
+	<dict>
+		<key>name</key>
+		<string>Solar System</string>
+		<key>planets</key>
 		<dict>
-			<key>New item</key>
-			<dict/>
-			<key>New item - 4</key>
-			<string></string>
-			<key>New item - 3</key>
-			<string></string>
-			<key>New item - 2</key>
-			<string></string>
+			<key>Earth</key>
+			<string>Is the third planet from the sun, which has a circumference of  24859.82 miles.</string>
+			<key>Jupiter</key>
+			<string>Is the fifth planet from the sun, is the largest in the solar system. </string>
+			<key>Mars</key>
+			<string>Is the fourth planet from the sun, which is the second smallest planet after mercury </string>
+			<key>Mercury</key>
+			<string>A very hot planet, closest to the sun.</string>
+			<key>Neptune </key>
+			<string>Is the eight an the farthest planet from the sun, is 17 times the mass of Earth and is slightly more massive than its near-twin Uranus.</string>
+			<key>Saturn </key>
+			<string>Is the sixth planet from the sun, has a prominent ring system visible from earth. </string>
+			<key>Uranus </key>
+			<string>Is the seventh  planet from the sun,  has the third-largest planetary radius and fourth-largest planetary mass in the Solar System. </string>
+			<key>Venus</key>
+			<string>The second Planet from the Sun,Has the longest rotation period.</string>
 		</dict>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Kepler-90</string>
+		<key>planets</key>
 		<dict>
-			<key>New item</key>
-			<string></string>
-			<key>New item - 2</key>
-			<string></string>
-			<key>New item - 3</key>
-			<string></string>
+			<key>Kepler-90a </key>
+			<string>A very hot planet, closest to the sun.</string>
+			<key>Kepler-90b</key>
+			<string>The second Planet from the Sun,Has the longest rotation period.</string>
+			<key>Kepler-90c</key>
+			<string>Is the third planet from the sun, which has a circumference of  24859.82 miles.</string>
+			<key>Kepler-90d</key>
+			<string>Is the fourth planet from the sun, which is the second smallest planet after mercury </string>
+			<key>Kepler-90e</key>
+			<string>Is the fifth planet from the sun, is the largest in the solar system. </string>
+			<key>Kepler-90g</key>
+			<string>Is the seventh  planet from the sun,  has the third-largest planetary radius and fourth-largest planetary mass in the Solar System. </string>
+			<key>kepler-90f </key>
+			<string>Is the sixth planet from the sun, has a prominent ring system visible from earth. </string>
 		</dict>
-	</array>
-</dict>
+	</dict>
+</array>
 </plist>

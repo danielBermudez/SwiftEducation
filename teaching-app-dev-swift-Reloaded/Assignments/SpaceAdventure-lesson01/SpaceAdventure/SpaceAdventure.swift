@@ -142,6 +142,7 @@ class SpaceAdventure{
         
     }
     private func determineDestination(){
+     
         var  decision = ""
         while !(decision == "Y" || decision == "N" || decision == "Cookies!"){
             decision = responseToPrompt(prompt: "Shall I randomly choose a planet for you to visit? (Y or N)")
@@ -153,6 +154,9 @@ class SpaceAdventure{
                   print("Ok! Traveling to...")
                 if let planet = planetarySystem.randomPlanet{
                     visit(planetName: planet.name)
+                    print("Do you want to visit the next planet in the System?")
+                    
+                    hopPlanet( planet: planet)
                     
                 }else{
                     print("Sorry, but there are no planets in this system.")
@@ -175,6 +179,29 @@ class SpaceAdventure{
             }}
         
     }
+    private func hopPlanet(planet:Planet){
+        var currentPlanet = planet
+        var hop = true
+        while(hop){
+            let response = responseToPrompt(prompt: "Do you Want to visit the next planet ? Y/N")
+            if(response == "Y"){
+   
+            if let nextPlanet = currentPlanet.nextPlanet?.name{
+                visit(planetName: nextPlanet)
+                currentPlanet = planet.nextPlanet!
+                
+               
+            }else {
+                 hop = false
+                }
+        }else if (response == "N") {
+                hop = false
+                
+            }
+                }
+        
+        }
+    
     private func visit(planetName:String){
         print("Traveling to \(planetName)")
         // eleventh assignment

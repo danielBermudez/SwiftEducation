@@ -12,16 +12,42 @@ import Foundation
     // use a convenience init to use the planetary system Init
     //    let planetarySystem = PlanetarySystem(numberOfPlanets: 8)
     //    let adventure = SpaceAdventure(planetarySystem : planetarySystem)
-let mercury = Planet(name: "Mercury", description: "A very hot planet, closest to the sun.")
-let venus = Planet(name: "Venus", description: "The second Planet from the Sun,Has the longest rotation period.")
-let earth = Planet(name: "Earth", description: "Is the third planet from the sun, which has a circumference of  24859.82 miles.")
-let  mars = Planet(name: "Mars", description: "Is the fourth planet from the sun, which is the second smallest planet after mercury ")
-let  jupiter = Planet(name: "Jupiter", description: "Is the fifth planet from the sun, is the largest in the solar system. ")
-let saturn = Planet(name: "Saturn ", description: "Is the sixth planet from the sun, has a prominent ring system visible from earth. ")
-let uranus = Planet(name: "Uranus ", description: "Is the seventh  planet from the sun,  has the third-largest planetary radius and fourth-largest planetary mass in the Solar System. ")
-let neptune = Planet(name: "Neptune ", description: "Is the eight an the farthest planet from the sun, is 17 times the mass of Earth and is slightly more massive than its near-twin Uranus.")
-let planets = [mercury,venus,earth,mars,jupiter,saturn,uranus,neptune]
-let systemName = "Solar System"
+    //let mercury = Planet(name: "Mercury", description: "A very hot planet, closest to the sun.")
+    //let venus = Planet(name: "Venus", description: "The second Planet from the Sun,Has the longest rotation period.")
+    //let earth = Planet(name: "Earth", description: "Is the third planet from the sun, which has a circumference of  24859.82 miles.")
+    //let  mars = Planet(name: "Mars", description: "Is the fourth planet from the sun, which is the second smallest planet after mercury ")
+    //let  jupiter = Planet(name: "Jupiter", description: "Is the fifth planet from the sun, is the largest in the solar system. ")
+    //let saturn = Planet(name: "Saturn ", description: "Is the sixth planet from the sun, has a prominent ring system visible from earth. ")
+    //let uranus = Planet(name: "Uranus ", description: "Is the seventh  planet from the sun,  has the third-largest planetary radius and fourth-largest planetary mass in the Solar System. ")
+    //let neptune = Planet(name: "Neptune ", description: "Is the eight an the farthest planet from the sun, is 17 times the mass of Earth and is slightly more massive than its near-twin Uranus.")
+    //let planets = [mercury,venus,earth,mars,jupiter,saturn,uranus,neptune]
+//fifteenth
+// reduce repetitve code
+    let planetData = [
+        "Mercury": "A very hot planet, closest to the sun.",
+        "Venus": "It's very cloudy here!",
+        "Earth": "There is something very familiar about this planet.",
+        "Mars": "Known as the red planet.",
+        "Jupiter": "A gas giant, with a noticeable red spot.",
+        "Saturn": "This planet has beautiful rings around it.",
+        "Uranus": "Strangely, this planet rotates around on its side.",
+        "Neptune": "A very cold planet, furthest from the sun."
+]
+
+var planets = planetData.map{
+    name,description in Planet(name: name, description: description)
+}
+private func setNeighbour(){
+    for i in planets.indices{
+       
+            if  i < planets.count-1 {
+             planets[i].nextPlanet = planets[i+1]
+        }
+  
+}
+}
+setNeighbour()
+    let systemName = "Solar System"
 let kepler90a = Planet(name: "Kepler-90a ", description: "A very hot planet, closest to the sun.")
 let kepler90b = Planet(name: "Kepler-90b", description: "The second Planet from the Sun,Has the longest rotation period.")
 let kepler90c = Planet(name: "Kepler-90c", description: "Is the third planet from the sun, which has a circumference of  24859.82 miles.")
@@ -35,7 +61,9 @@ let kepler90 = PlanetarySystem(name: "Kepler-90", planets: keplerPlanets)
 let systemCollection = [solarSystem,kepler90]
 let adventure = SpaceAdventure(planetarySystems: systemCollection)
 
+
     adventure.start()
+
 // first assignment
 // print string literals
 
@@ -83,29 +111,38 @@ private func convertPlanet(planet: Planet)-> Dictionary<String,String>{
     let planetRepresentation :[String : String] = ["Name": planet.name, "Description": planet.description]
     return planetRepresentation
 }
-private func convertPlanetarySystem(system : PlanetarySystem) -> (Dictionary<String,String>,[Dictionary<String,String>]){
-    let systemRepresentation =  ["Name": system.name]
-    var planetsArray = [Dictionary<String,String>]()
+private func convertPlanetarySystem(system : PlanetarySystem) -> PlanetarysystemProperties{
+
+    var planetsArray = Dictionary<String,String>()
     for i in system.planets.indices {
-        planetsArray.append(convertPlanet(planet: system.planets[i]))
+        let planetData = convertPlanet(planet: system.planets[i])
+        let name = planetData["Name"]!
+        let description = planetData["Description"]!
+        planetsArray.updateValue(description, forKey: name)
     }
-    return (systemRepresentation,planetsArray)
+    let result = PlanetarysystemProperties(name: system.name, planets: planetsArray)
+    return result
 }
+
+
 private func createPropertyList(){
-    let array = [convertPlanet(planet: <#T##Planet#>)]
+    let system1  = convertPlanetarySystem(system: solarSystem)
+    let system2 = convertPlanetarySystem(system: kepler90)
+    let planetarySystems = [system1,system2]
     let encoder = PropertyListEncoder()
     encoder.outputFormat = .xml
     
-    let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("Preferences.plist")
+    let path = FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask)[0].appendingPathComponent("PropertyList.plist")
     
     do {
-        let data = try encoder.encode(preferences)
+        let data = try encoder.encode(planetarySystems)
         try data.write(to: path)
+    
     } catch {
         print(error)
 }
+}
 
-
-
+createPropertyList()
 
 

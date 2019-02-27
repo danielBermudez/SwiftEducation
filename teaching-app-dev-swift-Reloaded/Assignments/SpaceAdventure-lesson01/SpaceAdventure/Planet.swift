@@ -10,8 +10,13 @@ import Foundation
 class Planet {
     let name : String
     let description : String
+
+   var nextPlanet : Planet?
     init(name: String, description: String) {
         self.name = name
-        self.description = description  } 
+        self.description = description
+  
+        nextPlanet = nil
+    }
     
 }
