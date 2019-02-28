@@ -33,20 +33,24 @@ import Foundation
         "Uranus": "Strangely, this planet rotates around on its side.",
         "Neptune": "A very cold planet, furthest from the sun."
 ]
-
+let pillarOfAutumn = Spaceship(name: "UNSC Pilar Of autumn ", capacity: 1000 , speed: 109.375)
+let venator = Spaceship(name: "Republic Venator", capacity: 2000, speed: 975)
+let spaceShipCollection = [pillarOfAutumn,venator]
 var planets = planetData.map{
     name,description in Planet(name: name, description: description)
 }
-private func setNeighbour(){
-    for i in planets.indices{
+private func setNeighbour(planetList:[Planet])-> [Planet] {
+    for i in planetList.indices{
        
-            if  i < planets.count-1 {
-             planets[i].nextPlanet = planets[i+1]
+            if  i < planetList.count-1 {
+             planetList[i].nextPlanet = planetList[i+1]
         }
   
 }
+    return planetList
 }
-setNeighbour()
+planets = setNeighbour(planetList: planets)
+
     let systemName = "Solar System"
 let kepler90a = Planet(name: "Kepler-90a ", description: "A very hot planet, closest to the sun.")
 let kepler90b = Planet(name: "Kepler-90b", description: "The second Planet from the Sun,Has the longest rotation period.")
@@ -55,11 +59,14 @@ let  kepler90d = Planet(name: "Kepler-90d", description: "Is the fourth planet f
 let  kepler90e = Planet(name: "Kepler-90e", description: "Is the fifth planet from the sun, is the largest in the solar system. ")
 let kepler90f = Planet(name: "kepler-90f ", description: "Is the sixth planet from the sun, has a prominent ring system visible from earth. ")
 let kepler90g = Planet(name: "Kepler-90g", description: "Is the seventh  planet from the sun,  has the third-largest planetary radius and fourth-largest planetary mass in the Solar System. ")
-let keplerPlanets = [kepler90a,kepler90b,kepler90c,kepler90d,kepler90e,kepler90f,kepler90g]
+
+
+let keplerPlanets = setNeighbour(planetList:[kepler90a,kepler90b,kepler90c,kepler90d,kepler90e,kepler90f,kepler90g] )
 let solarSystem = PlanetarySystem(name: systemName, planets: planets)
 let kepler90 = PlanetarySystem(name: "Kepler-90", planets: keplerPlanets)
+
 let systemCollection = [solarSystem,kepler90]
-let adventure = SpaceAdventure(planetarySystems: systemCollection)
+let adventure = SpaceAdventure(planetarySystems: systemCollection, shipCollection: spaceShipCollection)
 
 
     adventure.start()

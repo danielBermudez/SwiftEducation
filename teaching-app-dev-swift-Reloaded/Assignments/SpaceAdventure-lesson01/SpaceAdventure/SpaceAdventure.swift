@@ -12,6 +12,8 @@ class SpaceAdventure{
     let numberOfPlanets  = 8
     let diameterOfEarth  = 24859.82 // In miles, from pole to pole
     let systemsCollection : [PlanetarySystem]
+    let shipCollection : [Spaceship]
+    var spaceShip : Spaceship?
     var  planetarySystem : PlanetarySystem
 //Seventh Assignment
 // Class Planetary System in the planetary system init
@@ -21,12 +23,15 @@ class SpaceAdventure{
     //    }
 // eight assignment
 //add planets to the system
-    init(planetarySystems : [PlanetarySystem]){
+    init(planetarySystems : [PlanetarySystem], shipCollection: [Spaceship]){
         // fourteenth lesson
         // refactorize the code whitout changing funtionality
         //move planetary system initialization to the main and use the space adventure init.
         self.systemsCollection = planetarySystems
         planetarySystem =  PlanetarySystem(name : "", planets: [Planet]())
+        spaceShip = nil
+        self.shipCollection = shipCollection
+        
        
         
         
@@ -94,8 +99,9 @@ class SpaceAdventure{
        
         displayIntroduction()
         
-        greetAdventurer()
+        greetAdventurer()        
         planetarySystem = chooseSystem()
+        chooseSpaceship()
         if(!planetarySystem.planets.isEmpty ){
          print("Let's go on an adventure!")
         determineDestination()
@@ -153,11 +159,9 @@ class SpaceAdventure{
                 
                   print("Ok! Traveling to...")
                 if let planet = planetarySystem.randomPlanet{
-                    visit(planetName: planet.name)
-                    print("Do you want to visit the next planet in the System?")
-                    
-                    hopPlanet( planet: planet)
-                    
+                if  let  planetVisited = visit(planetName: planet.name){
+                    hopPlanet(planet: planetVisited)
+                    }
                 }else{
                     print("Sorry, but there are no planets in this system.")
                 }
@@ -168,7 +172,10 @@ class SpaceAdventure{
             } else if decision == "N"{
                 
                 let planetName = responseToPrompt(prompt: "Ok, name the planet you would  like to visit.")
-                visit(planetName: planetName)
+              
+                if  let  planetVisited = visit(planetName: planetName){
+                    hopPlanet(planet: planetVisited)
+                }
                 
                 // Third Assignment
             }else if(decision == "Cookies!"){
@@ -179,16 +186,24 @@ class SpaceAdventure{
             }}
         
     }
+    private func chooseSpaceship(){
+        print("Choosing a spaceship randomly...")
+      let random = Int(arc4random_uniform(UInt32(shipCollection.count)))
+        spaceShip = shipCollection[random]
+            print("The  \(spaceShip!.name) has a capacity for \(spaceShip!.capacity) people and travels at a speed of \(spaceShip!.speed) light-years per hour.")
+    
+    }
     private func hopPlanet(planet:Planet){
         var currentPlanet = planet
         var hop = true
+        if(planet.nextPlanet != nil){
         while(hop){
-            let response = responseToPrompt(prompt: "Do you Want to visit the next planet ? Y/N")
+            var response = responseToPrompt(prompt: "Do you Want to visit the next planet ? Y/N")
             if(response == "Y"){
    
             if let nextPlanet = currentPlanet.nextPlanet?.name{
                 visit(planetName: nextPlanet)
-                currentPlanet = planet.nextPlanet!
+                currentPlanet = currentPlanet.nextPlanet!
                 
                
             }else {
@@ -200,27 +215,38 @@ class SpaceAdventure{
             }
                 }
         
-        }
+        }}
     
-    private func visit(planetName:String){
+    private func visit(planetName:String)->Planet?{
         print("Traveling to \(planetName)")
         // eleventh assignment
         //Enhance the visit: method to handle cases where the traveler types an invalid planet name, and add logic to make certain planets unvisitable.
         var planetFound = false
+        var planet : Planet?
         for  i in  0 ..< planetarySystem.planets.count{
-            let planet = planetarySystem.planets[i]
-            if planetName == planet.name {
+            let  planetForComparison = planetarySystem.planets[i]
+            if planetName == planetForComparison.name {
                 planetFound = true
+                planet = planetForComparison
                 if(planetName != "Mercury"){
-                    print("Arrived in \(planet.name). \(planet.description)")
+                    print("Arrived in \(planetForComparison.name). \(planetForComparison.description)")
+                    
+                    
                 }else{
                     print("Sorry Mercury is too close to the sun, we can't go there. ")
+                    
                 }
-            }
+  
+        }
+       
+            
+            
         }
         if planetFound == false{
             print("There's no planet with that name in the \(planetarySystem.name).")
-        }
+            return nil
+        }else { return planet}
+       
     }
     
 }
